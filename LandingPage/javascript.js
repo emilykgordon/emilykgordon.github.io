@@ -47,3 +47,28 @@ element.addEventListener('wheel', function(e) {
   var scrollLeft = element.scrollLeft;
   element.scrollLeft = scrollLeft + delta;
 });
+
+
+
+const text = "This is the text to be typed out.";
+const delay = 100; // Delay between each character (in milliseconds)
+
+const typingTextElement = document.getElementById('typing-text');
+const typingCursorElement = document.createElement('span');
+typingCursorElement.classList.add('typing-cursor');
+typingTextElement.appendChild(typingCursorElement);
+
+let index = 0;
+
+function typeNextCharacter() {
+  typingTextElement.textContent += text[index];
+  index++;
+
+  if (index < text.length) {
+    setTimeout(typeNextCharacter, delay);
+  } else {
+    typingCursorElement.classList.remove('typing-cursor');
+  }
+}
+
+typeNextCharacter();
